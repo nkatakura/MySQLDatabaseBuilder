@@ -1,0 +1,17 @@
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\bin\Debug\PresentationLayer.exe.config
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\bin\Debug\PresentationLayer.exe
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\bin\Debug\PresentationLayer.pdb
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\bin\Debug\DataObjects.dll
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\bin\Debug\LogicLayer.dll
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\bin\Debug\DataObjects.pdb
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\bin\Debug\LogicLayer.pdb
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\obj\Debug\PresentationLayer.csprojAssemblyReference.cache
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\obj\Debug\PresentationLayer.Properties.Resources.resources
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\obj\Debug\PresentationLayer.csproj.GenerateResource.cache
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\obj\Debug\PresentationLayer.csproj.CoreCompileInputs.cache
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\obj\Debug\PresentationLayer.csproj.CopyComplete
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\obj\Debug\PresentationLayer.exe
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\obj\Debug\PresentationLayer.pdb
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\obj\Debug\PresentationLayer.frmMain.resources
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\bin\Debug\DataAccessLayer.pdb

@@ -1,0 +1,65 @@
+Table	Attribute	Data Type	Nullable	PK	FK	Unique	Other Constraints	Comments
+vehicle_make									A look-up table of available vehicle makes
+vehicle_make	vehicle_make_name	VARCHAR(50)	N	Y		Y		The name of the make
+vehicle_model									A look-up table of available vehicle models for each make
+vehicle_model	vehicle_make	VARCHAR(50)	N	Y	vehicle_make.vehicle_make_name	N		The make of the model
+vehicle_model	vehicle_model_name	VARCHAR(50)	N	Y		Y		The name of the model
+vehicles									General information for all vehicles that have been purchased.  Vehicles have not necessarily been inspected. maINTained. or imported.
+vehicles	vehicle_VIN	VARCHAR(50)	N	Y		Y		The vehicle's VIN (Vehicle Identification Number)
+vehicles	vehicle_make	VARCHAR(50)	N	N	vehicle_make.vehicle_make_name	N		The vehicle's make from the vehicle_make table
+vehicles	vehicle_model	VARCHAR(50)	N	N	vehicle_model.vehicle_model_name	N		The vehicle's model from the vehicle_model table
+vehicles	vehicle_model_year	VARCHAR(50)	N	N		N	Cannot be negative. cannot be after current year	The vehicle's model year
+vehicles	vehicle_miles	INT	N	N		N	Cannot be negative	The odometer reading at the time of adding the vehicle
+vehicles	vehicle_release_year	INT	N	N		N	Cannot be negative. cannot be after current year	The vehicle's release year.  This is different from model year. as model years may be different from the year the vehicle is released.
+vehicles	vehicle_purchase_price	DECIMAL(20, 2)	N	N		N	Cannot be negative	The price. in Yen. at which the vehicle was purchased at.  Value is an INT because Yen is used in whole numbers.
+maintenance_schedule									A table of scheduled vehicle maintenances
+maintenance_schedule	maintenance_id	INT	N	Y		Y	auto-increment	A surrogate key for the maintenance table
+maintenance_schedule	vehicle_VIN	VARCHAR(50)	N	N	vehicles.vehicle_VIN	N		Foreign key for which vehicle the maintenance is scheduled for
+maintenance_schedule	maintenance_DATE	DATE	N	N		N		DATE at which the maintenance is scheduled
+maintenance_schedule	maintenance_complete	ENUM('Y', 'N')	N	N		N		Whether the maintenance has been complete or not
+import_schedule									A table of scheduled imports
+import_schedule	vehicle_VIN	INT	N	Y	vehicles.vehicle_VIN	N		The vehicle's VIN from the vehicles table
+import_schedule	import_scheduled_DATE	DATE	N	Y		N		The DATE in which the vehicle is scheduled to be imported
+import_schedule	import_complete_DATE	DATE	Y	N		N		The DATE when the vehicle was imported.  A null value represents a vehicle that has not been imported yet.
+inventory									A table of vehicles currently available for sale
+inventory	inventory_id	INT	N	N		Y	auto-increment	A surrogate key for the inventory records
+inventory	vehicle_VIN	INT	N	N	vehicles.vehicle_VIN	Y		vehicle_VIN from vehicles table
+inventory	inventory_list_price	DECIMAL(20, 2)	N	N		N	Cannot be negative	The price at which the vehicle is listed at
+inventory	inventory_list_DATE	DATE	N	N		N		DATE the vehicle was listed
+potential_vehicles									A table of vehicles that may be purchased in the near future
+potential_vehicles	potential_vehicle_VIN	VARCHAR(50)	N	Y		Y		The vehicle's VIN (Vehicle Identification Number)
+potential_vehicles	potential_vehicle_make	VARCHAR(50)	N	N	vehicle_make.vehicle_make_name	N		The vehicle's make
+potential_vehicles	potential_vehicle_model	VARCHAR(50)	N	N	vehicle_model.vehicle_model_name	N		The vehicle's model
+potential_vehicles	potential_vehicle_model_year	VARCHAR(50)	N	N		N	Cannot be negative. cannot be after current year	The vehicle's model year
+potential_vehicles	potential_vehicle_miles	INT	N	N		N	Cannot be negative	The vehicle's listed mileage
+potential_vehicles	potential_vehicle_release_year	INT	N	N		N	Cannot be negative. cannot be after current year	The vehicle's release year.  This is different from model year. as model years may be different from the year the vehicle is released.
+potential_vehicles	potential_vehicle_list_price	DECIMAL(20, 2)	Y	N		N	Cannot be negative	The price the vehicle is listed at. Null value indicates the vehicle is up for bid. or does not have a list price.
+postal_codes									A table of postal codes
+postal_codes	postal_code	VARCHAR(50)	N	Y		Y		The postal code
+postal_codes	country	VARCHAR(50)	N	N		N		The country of the postal code
+postal_codes	state_or_province	VARCHAR(50)	N	N		N		The state or province of the postal code
+postal_codes	city_or_town	VARCHAR(50)	N	N		N		The city or town of the postal code
+customers									General information about customers
+customers	customer_id	INT	N	Y		Y	auto-increment	A surrogate key for customers
+customers	customer_first_name	VARCHAR(50)	N	N		N		The customer's first name
+customers	customer_last_name	VARCHAR(50)	N	N		N		The customer's last name
+customers	customer_address	VARCHAR(50)	N	N		N		The customer's address
+customers	customer_postal_code	VARCHAR(50)	N	N		N	Can be a US or JP postal code	The customer's postal code (zip code for US addresses)
+customers	customer_email	VARCHAR(50)	N	N		Y		The customer's email address
+customers	customer_phone	VARCHAR(50)	N	N		Y	Can be a US or JP phone number	The customer's phone number
+positions									A look-up table for employee positions
+positions	position_name	VARCHAR(50)	N	Y		Y		The name of the position
+employees									General information about employees
+employees	employee_id	INT	N	N		Y	auto-increment	A surrogate key for employees
+employees	employee_first_name	VARCHAR(50)	N	N		N		The employee's first name
+employees	employee_last_name	VARCHAR(50)	N	N		N		The employee's last name
+employees	employee_position	VARCHAR(50)	N	N	positions.position_name	N		The employee's position
+employees	employee_start_DATE	DATE	N	N		N		The DATE the employee starts or started
+employees	employee_end_DATE	DATE	N	N		N		The DATE the employee ends or ended their employment
+employees	employee_phone_number	VARCHAR(50)	Y	N		Y	Can be a US or JP phone number	The employee's phone number
+employees	employee_email_address	VARCHAR(50)	Y	N		Y		The employee's email address
+sold_vehicles									Information about vehicles that have been sold
+sold_vehicles	sold_vehicle_VIN	VARCHAR(50)	N	Y		Y		The vehicle's VIN
+sold_vehicles	customer_sold_to	INT	N	N	customers.customer_id	N		The customer the vehicle was sold to
+sold_vehicles	sale_price	DECIMAL(20, 2)	N	N		N	Cannot be negative	The price the vehicle was sold for
+sold_vehicles	sale_DATE	DATE	N	N		N		The DATE the vehicle was sold

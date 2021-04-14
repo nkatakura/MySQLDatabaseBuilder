@@ -1,0 +1,6 @@
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\DataObjects\bin\Debug\DataObjects.dll
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\DataObjects\bin\Debug\DataObjects.pdb
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\DataObjects\obj\Debug\DataObjects.csprojAssemblyReference.cache
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\DataObjects\obj\Debug\DataObjects.csproj.CoreCompileInputs.cache
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\DataObjects\obj\Debug\DataObjects.dll
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\DataObjects\obj\Debug\DataObjects.pdb

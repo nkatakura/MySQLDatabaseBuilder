@@ -1,5 +1,9 @@
-PROJECT NAME:       MySQL Database Builder
-PROJECT AUTHOR:     Naoki Katakura
+PROJECT NAME:       
+MySQL Database Builder
+
+PROJECT AUTHOR:     
+Naoki Katakura
+
 PROJECT DESCRIPTION:
 
 	The main purpose of this program is to generate a MySQL script file that builds a database

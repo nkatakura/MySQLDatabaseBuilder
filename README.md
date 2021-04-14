@@ -1,6 +1,7 @@
 PROJECT NAME:       MySQL Database Builder
 PROJECT AUTHOR:     Naoki Katakura
 PROJECT DESCRIPTION:
+
 	The main purpose of this program is to generate a MySQL script file that builds a database
         that a user created.  Databases can be designed by manually inputting tables and fields
         into the GUI, or by loading a data dictionary in the form of a TSV file.
@@ -14,6 +15,7 @@ PROJECT DESCRIPTION:
         Development degree program.
 	
 USE STORIES:
+
         user adds a new table
         user deletes a table
         user selects an existing table
@@ -25,6 +27,7 @@ USE STORIES:
 
 
 KNOWN ISSUES:
+
         Importing from a TSV file created using a spreadsheet program like Google Sheets or Microsoft Excel
         requires VERY specific formatting.  Validating imported data or adding flexibility to importing data
         will reduce errors.
@@ -43,6 +46,7 @@ KNOWN ISSUES:
         users to add custom arguments will improve flexibility.
 
 POSSIBLE FEATURES:
+
 	    Add functionality for adding stored procedures to the SQL file
 		    - automatically add CRUD stored procedures based on tables and fields OR
 		    - let user decide which stored procedures to add

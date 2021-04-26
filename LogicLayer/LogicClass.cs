@@ -16,6 +16,10 @@ namespace LogicLayer
         }
         public bool foreignKeyExists(List<Table> tables, string foreignKey)
         {
+            // This method was created to check if a foreign key entered by the user actually existed in a
+            // previously created table.  This method became unnecessary when I restricted the user's inputs
+            // to already-existing tables.
+
             // This method checks whether the foreign key argument exists in any tables
             // in the table list.
             bool exists = false;                                                // Boolean variable to store whether the field exists
@@ -102,6 +106,47 @@ namespace LogicLayer
                 throw;
             }
             return tables;
+        }
+        public bool tableAlreadyExists(List<Table> tables, string testTableName)
+        {
+            /*  This method checks if a table name (testTableName argument) already exists
+             *  in the list of tables.  This is used becuase multiple tables cannot share
+             *  the same name in a database.
+             */
+            bool exists = false;
+
+            // Loop for all tables
+            for (int i = 0; i < tables.Count; i++)
+            {
+                // Check each table name to see if input name matches
+                // ToLower() is used because MySQL table names are not case-sensitive
+                if (testTableName.ToLower() == tables[i].TableName.ToLower())
+                {
+                    exists = true;
+                }
+            }
+
+            return exists;
+        }
+        public bool fieldAlreadyExists(Table table, string testFieldName)
+        {
+
+            /*  This method checks if a field name (testFieldName argument) already exists
+            *  in a table's list of fields.  This is used becuase multiple fields cannot share
+            *  the same name in a database.
+            */
+
+            bool exists = false;
+
+            for (int i = 0; i < table.Fields.Count; i++)
+            {
+                if (table.Fields[i].FieldName.ToLower() == testFieldName.ToLower())
+                {
+                    exists = true;
+                }
+            }
+
+            return exists;
         }
     }
 }

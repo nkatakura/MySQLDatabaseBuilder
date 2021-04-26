@@ -268,7 +268,7 @@ namespace DataAccessLayer
                         // If the field is a foreign key, add it to the foreign key list
                         if((fields[x].ForeignKey != ""))
                         {
-                            foreignKeys.Add(fields[x].ForeignKey);
+                            foreignKeys.Add(fields[x].ForeignKey + "." + fields[x].FieldName);
                         }
 
                         // This if statement checks if the field is the last field in the list or not
@@ -307,8 +307,9 @@ namespace DataAccessLayer
                          *  being the table name, and the 1 index being the field name.  These are then used to print the MySQL code.
                          */
                         char separator = '.';       // separator char
-                        string fkTableName;         // string to hold the table name
-                        string fkFieldName;         // string to hold the field name
+                        string fkReferenceTableName = "";         // string to hold the reference table name
+                        string fkReferenceFieldName = "";         // string to hold the reference field name
+                        string fkFieldName = "";                  // string to hold the field name
 
                         // loop through all foreign keys
                         for (int z = 0; z < foreignKeys.Count; z++)
@@ -317,12 +318,14 @@ namespace DataAccessLayer
                             string[] fkTableNameAndFieldNameArray = foreignKeys[z].Split(separator);
 
                             // storing members of the array into strings (mostly for readability)
-                            fkTableName = fkTableNameAndFieldNameArray[0];
-                            fkFieldName = fkTableNameAndFieldNameArray[1];
+
+                            fkReferenceTableName = fkTableNameAndFieldNameArray[0];
+                            fkReferenceFieldName = fkTableNameAndFieldNameArray[1];
+                            fkFieldName = fkTableNameAndFieldNameArray[2];
 
                             // output
-                            fileWriter.WriteLine("\t, CONSTRAINT fk_" + tables[i].TableName + "_" + fkTableName + "_" + fkFieldName);
-                            fileWriter.WriteLine("\t\tFOREIGN KEY (" + fkFieldName + ") REFERENCES " + fkTableName + "(" + fkFieldName + ")");
+                            fileWriter.WriteLine("\t, CONSTRAINT fk_" + tables[i].TableName + "_" + fkReferenceTableName + "_" + fkReferenceFieldName);
+                            fileWriter.WriteLine("\t\tFOREIGN KEY (" + fkFieldName + ") REFERENCES " + fkReferenceTableName + "(" + fkReferenceFieldName + ")");
                         }
                     }
                     

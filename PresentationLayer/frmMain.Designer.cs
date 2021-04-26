@@ -37,6 +37,7 @@ namespace PresentationLayer
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuHowTo = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAddTable = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -122,28 +123,29 @@ namespace PresentationLayer
             // mnuLoadTSV
             // 
             this.mnuLoadTSV.Name = "mnuLoadTSV";
-            this.mnuLoadTSV.Size = new System.Drawing.Size(180, 22);
+            this.mnuLoadTSV.Size = new System.Drawing.Size(143, 22);
             this.mnuLoadTSV.Text = "Load TSV File";
             this.mnuLoadTSV.Click += new System.EventHandler(this.mnuLoadTSV_Click);
             // 
             // mnuSaveCSVFile
             // 
             this.mnuSaveCSVFile.Name = "mnuSaveCSVFile";
-            this.mnuSaveCSVFile.Size = new System.Drawing.Size(180, 22);
+            this.mnuSaveCSVFile.Size = new System.Drawing.Size(143, 22);
             this.mnuSaveCSVFile.Text = "Save TSV File";
             this.mnuSaveCSVFile.Click += new System.EventHandler(this.mnuSaveCSVFile_Click);
             // 
             // mnuExit
             // 
             this.mnuExit.Name = "mnuExit";
-            this.mnuExit.Size = new System.Drawing.Size(180, 22);
+            this.mnuExit.Size = new System.Drawing.Size(143, 22);
             this.mnuExit.Text = "Exit";
             this.mnuExit.Click += new System.EventHandler(this.mnuExit_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuAbout});
+            this.mnuAbout,
+            this.mnuHowTo});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
@@ -151,8 +153,15 @@ namespace PresentationLayer
             // mnuAbout
             // 
             this.mnuAbout.Name = "mnuAbout";
-            this.mnuAbout.Size = new System.Drawing.Size(107, 22);
+            this.mnuAbout.Size = new System.Drawing.Size(180, 22);
             this.mnuAbout.Text = "About";
+            // 
+            // mnuHowTo
+            // 
+            this.mnuHowTo.Name = "mnuHowTo";
+            this.mnuHowTo.Size = new System.Drawing.Size(180, 22);
+            this.mnuHowTo.Text = "How to...";
+            this.mnuHowTo.Click += new System.EventHandler(this.mnuHowTo_Click);
             // 
             // groupBox1
             // 
@@ -676,6 +685,7 @@ namespace PresentationLayer
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MySQL Database Builder";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -753,6 +763,7 @@ namespace PresentationLayer
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cboReferenceTable;
         private System.Windows.Forms.CheckBox chkForeignKey;
+        private System.Windows.Forms.ToolStripMenuItem mnuHowTo;
     }
 }
 

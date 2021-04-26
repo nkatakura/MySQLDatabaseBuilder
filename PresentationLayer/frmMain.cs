@@ -24,9 +24,12 @@ using LogicLayer;
         at Kirkwood Community College (Spring 2021 with Jim Glasgow).
         The course was taken as part of the AAS Computer Software
         Development degree program.
+
+        github link: https://github.com/nkatakura/MySQLDatabaseBuilder
+        
 */
 
-/*  USE STORIES:
+/*  USER STORIES:
         user adds a new table
         user deletes a table
         user selects an existing table
@@ -41,12 +44,6 @@ using LogicLayer;
         Importing from a TSV file created using a spreadsheet program like Google Sheets or Microsoft Excel
         requires VERY specific formatting.  Validating imported data or adding flexibility to importing data
         will reduce errors.
-
-        There is no way to give table-specific names to foreign keys. Foreign key names are set to the key
-        they are referencing.  Giving the users an option to name foreign keys will improve usability.
-        This means that in the data dictionary a user creates, any foreign keys have to be named the same
-        as the key they are referencing.  This is a pretty big issue when creating a database, so this would
-        be one of the first things to fix in a later version.
 
         In MySQL, table and field names cannot be MySQL keywords.  There is no validation in the current
         version of the software to prevent a user from making table and field names MySQL keywords.
@@ -73,10 +70,7 @@ using LogicLayer;
  */
 
 //WORK FLOW:
-//      validate auto-increment fields are also of the INT data type
-// validation:
-//      multiple tables cannot share the same table name
-//  	make a load event handler and move stuff there
+//  add validation for field names being the same
 
 namespace PresentationLayer
 {
@@ -89,11 +83,16 @@ namespace PresentationLayer
         private bool _unsavedChangesExists;     // bool that is switched to true/false based on if the user has unsaved changes
         public frmMain()
         {
+            InitializeComponent();
+        }
+
+        // Load event handler
+        private void frmMain_Load(object sender, EventArgs e)
+        {
             tables = new List<Table>();
             // _selectedFieldIndex = -1;
             // _selectedTableIndex = -1;
             logicClass = new LogicClass();
-            InitializeComponent();
             tables = logicClass.LoadData();
             updateTableListDisplay(tables);
             _unsavedChangesExists = false;
@@ -131,6 +130,16 @@ namespace PresentationLayer
             {
                 MessageBox.Show("You need to enter a table description");
                 txtTableDescription.Focus();
+                return;
+            }
+
+            // The following if statement calls the tableAlreadyExists method
+            // to check if the table name entered by the user has already been used.
+            // Multiple tables cannot share the same MySQL table name.
+            if(logicClass.tableAlreadyExists(tables, txtTableName.Text))
+            {
+                MessageBox.Show("The table name you entered is already in use.");
+                txtTableName.Focus();
                 return;
             }
 
@@ -183,7 +192,14 @@ namespace PresentationLayer
             // if the field name contains a space
             if (!txtFieldName.ToString().Contains(' '))
             {
-                MessageBox.Show("A fieldname cannot contain spaces.");
+                MessageBox.Show("A field name cannot contain spaces.");
+                txtFieldName.Focus();
+                return;
+            }
+
+            if (logicClass.fieldAlreadyExists(tables[_selectedTableIndex], txtFieldName.Text))
+            {
+                MessageBox.Show("The field name you entered is already in use in the table");
                 txtFieldName.Focus();
                 return;
             }
@@ -651,6 +667,12 @@ namespace PresentationLayer
         {
             // Event handler for the menu strip button "Load TSV File".
             btnSaveData_Click(sender, e);
+        }
+
+        private void mnuHowTo_Click(object sender, EventArgs e)
+        {
+            frmHowTo howTo = new frmHowTo();
+            howTo.ShowDialog();
         }
     }
 }

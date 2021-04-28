@@ -480,6 +480,22 @@ namespace PresentationLayer
                 this.Close();
             }
         }
+        private void mnuHowTo_Click(object sender, EventArgs e)
+        {
+            frmHowTo howTo = new frmHowTo();
+            howTo.ShowDialog();
+        }
+        private void btnAddANewField_Click(object sender, EventArgs e)
+        {
+            if (lstTables.FocusedItem == null)
+            {
+                MessageBox.Show("You must select or add a table first");
+                return;
+            }
+            frmAddField addField = new frmAddField(tables, _selectedTableIndex, logicClass);
+            addField.ShowDialog();
+            updateFieldListDisplay(tables[_selectedTableIndex].Fields);
+        }
 
         // Display update methods
 
@@ -669,10 +685,6 @@ namespace PresentationLayer
             btnSaveData_Click(sender, e);
         }
 
-        private void mnuHowTo_Click(object sender, EventArgs e)
-        {
-            frmHowTo howTo = new frmHowTo();
-            howTo.ShowDialog();
-        }
+
     }
 }

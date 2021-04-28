@@ -202,6 +202,17 @@ namespace DataAccessLayer
             {
                 StreamWriter fileWriter = new StreamWriter(_dataPath + _dataFolder + fileName);
 
+                // Writing the file header
+                fileWriter.WriteLine("/* *****************************************************************************\n" +
+                                        "\tFILENAME:\t" + fileName +
+                                        "\n\tDATE:\t" + DateTime.Today.ToString("yyyy-MM-dd") +
+                                        "\n\tAUTHOR:\tNaoki Katakura" +
+                                        "\n\tDESCRIPTION:\n" +
+                                        "\t\tThis MySQL script file was generated using a program called\nMySQL Database" +
+                                        "Builder written by Naoki Katakura.  Github link: https://github.com/nkatakura/MySQLDatabaseBuilder" +
+                                    "\n* *****************************************************************************/\n");
+
+
                 // Writing the sql code to drop / create the database
                 fileWriter.WriteLine("DROP DATABASE IF EXISTS " + databaseName + ";");
                 fileWriter.WriteLine("CREATE DATABASE " + databaseName + ";");

@@ -90,6 +90,7 @@ namespace PresentationLayer
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtDatabaseName = new System.Windows.Forms.TextBox();
+            this.btnAddANewField = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -153,13 +154,13 @@ namespace PresentationLayer
             // mnuAbout
             // 
             this.mnuAbout.Name = "mnuAbout";
-            this.mnuAbout.Size = new System.Drawing.Size(180, 22);
+            this.mnuAbout.Size = new System.Drawing.Size(122, 22);
             this.mnuAbout.Text = "About";
             // 
             // mnuHowTo
             // 
             this.mnuHowTo.Name = "mnuHowTo";
-            this.mnuHowTo.Size = new System.Drawing.Size(180, 22);
+            this.mnuHowTo.Size = new System.Drawing.Size(122, 22);
             this.mnuHowTo.Text = "How to...";
             this.mnuHowTo.Click += new System.EventHandler(this.mnuHowTo_Click);
             // 
@@ -668,11 +669,22 @@ namespace PresentationLayer
             this.txtDatabaseName.Size = new System.Drawing.Size(130, 20);
             this.txtDatabaseName.TabIndex = 3;
             // 
+            // btnAddANewField
+            // 
+            this.btnAddANewField.Location = new System.Drawing.Point(952, 43);
+            this.btnAddANewField.Name = "btnAddANewField";
+            this.btnAddANewField.Size = new System.Drawing.Size(119, 43);
+            this.btnAddANewField.TabIndex = 18;
+            this.btnAddANewField.Text = "Add a new Field";
+            this.btnAddANewField.UseVisualStyleBackColor = true;
+            this.btnAddANewField.Click += new System.EventHandler(this.btnAddANewField_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1286, 497);
+            this.Controls.Add(this.btnAddANewField);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.label2);
@@ -764,6 +776,7 @@ namespace PresentationLayer
         private System.Windows.Forms.ComboBox cboReferenceTable;
         private System.Windows.Forms.CheckBox chkForeignKey;
         private System.Windows.Forms.ToolStripMenuItem mnuHowTo;
+        private System.Windows.Forms.Button btnAddANewField;
     }
 }
 

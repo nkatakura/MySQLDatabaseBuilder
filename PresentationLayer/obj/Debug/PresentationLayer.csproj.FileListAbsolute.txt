@@ -16,3 +16,4 @@ C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\Pres
 C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\bin\Debug\DataAccessLayer.dll
 C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\bin\Debug\DataAccessLayer.pdb
 C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\obj\Debug\PresentationLayer.frmHowTo.resources
+C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\PresentationLayer\obj\Debug\PresentationLayer.frmAddField.resources

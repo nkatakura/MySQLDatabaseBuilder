@@ -53,6 +53,12 @@
     <Compile Include="frmAddField.Designer.cs">
       <DependentUpon>frmAddField.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAddTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddTable.Designer.cs">
+      <DependentUpon>frmAddTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmHowTo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAddField.resx">
       <DependentUpon>frmAddField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddTable.resx">
+      <DependentUpon>frmAddTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmHowTo.resx">
       <DependentUpon>frmHowTo.cs</DependentUpon>

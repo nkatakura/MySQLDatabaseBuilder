@@ -100,245 +100,6 @@ namespace PresentationLayer
 
         // Event handler methods
 
-        private void btnAddTable_Click(object sender, EventArgs e)
-        {
-            /*  This method creates a new Table object and adds it to the
-             *  program's list of Tables based on the user's inputs. This
-             *  method is called when the user clicks the "Add Table" button
-             */
-
-            // The following if statement checks if the user has entered
-            // a table name.
-            if (txtTableName.Text == "")
-            {
-                MessageBox.Show("You need to enter a table name");
-                txtTableName.Focus();
-                return;
-            }
-
-            // The following if statement checks if the user entered a table name containing a space
-            if (!txtTableName.ToString().Trim().Contains(' '))
-            {
-                MessageBox.Show("Table names cannot contain spaces");
-                txtTableName.Focus();
-                return;
-            }
-
-            // The following if statement checks if the user has entered a table
-            // description.
-            if (txtTableDescription.Text == "")
-            {
-                MessageBox.Show("You need to enter a table description");
-                txtTableDescription.Focus();
-                return;
-            }
-
-            // The following if statement calls the tableAlreadyExists method
-            // to check if the table name entered by the user has already been used.
-            // Multiple tables cannot share the same MySQL table name.
-            if(logicClass.tableAlreadyExists(tables, txtTableName.Text))
-            {
-                MessageBox.Show("The table name you entered is already in use.");
-                txtTableName.Focus();
-                return;
-            }
-
-            Table newTable = new Table(txtTableName.Text, txtTableDescription.Text);
-
-            // The following if statement creates a new list of tables if one does
-            // not exist yet
-            if (tables == null)
-            {
-                tables = new List<Table>();
-            }
-
-            tables.Add(newTable);
-
-            // Clearing controls
-            txtTableName.Clear();
-            txtTableDescription.Clear();
-            txtTableName.Focus();
-
-            // Calling the method to update the visible list of tables
-            updateTableListDisplay(tables);
-            _unsavedChangesExists = true;
-        }
-        private void btnAddField_Click(object sender, EventArgs e)
-        {
-            /*  This method adds a field to the currently selected table's
-             *  list of fields.  The field properties are determined by
-             *  what the user has input.  This method is called when the
-             *  user clicks the "Add Field" button.
-             *
-             * The following if blocks are used to check whether the user
-             * has entered required and valid data into the inputs.
-             */
-
-            // if a table is not selected
-            if (lstTables.FocusedItem == null)
-            {
-                MessageBox.Show("You must select or add a table first");
-                return;
-            }
-
-            // if the field name is blank
-            if (txtFieldName.Text == "")
-            {
-                MessageBox.Show("You need to enter a field name");
-                txtFieldName.Focus();
-                return;
-            }
-
-            // if the field name contains a space
-            if (!txtFieldName.ToString().Contains(' '))
-            {
-                MessageBox.Show("A field name cannot contain spaces.");
-                txtFieldName.Focus();
-                return;
-            }
-
-            if (logicClass.fieldAlreadyExists(tables[_selectedTableIndex], txtFieldName.Text))
-            {
-                MessageBox.Show("The field name you entered is already in use in the table");
-                txtFieldName.Focus();
-                return;
-            }
-
-            // if a datatype is not selected
-            if (cboDataType.SelectedItem == null)
-            {
-                MessageBox.Show("You need to enter a data type");
-                cboDataType.Focus();
-                return;
-            }
-
-            // if nullable is not selected
-            if (cboNullable.SelectedItem == null)
-            {
-                MessageBox.Show("You need to specify whether the field is nullable or not");
-                cboNullable.Focus();
-                return;
-            }
-
-            // if primary key is not selected
-            if (cboPrimaryKey.SelectedItem == null)
-            {
-                MessageBox.Show("You need to specify whether the field is a primary key or not");
-                cboPrimaryKey.Focus();
-                return;
-            }
-
-            // if unique is not selected
-            if (cboUnique.SelectedItem == null)
-            {
-                MessageBox.Show("You need to specify whether the field has a unique constraint");
-                cboUnique.Focus();
-                return;
-            }
-
-            // if comments are not entered
-            if (txtComments.Text == "")                                 
-            {
-                MessageBox.Show("You need to enter a comment");
-                txtComments.Focus();
-                return;
-            }
-
-            string otherConstraints;
-            // If a field is auto-increment, the data type must be INT
-            if(cboOtherConstraints.SelectedItem != null)
-            {
-                if (cboOtherConstraints.SelectedItem.ToString() == "auto-increment")
-                {
-                    if (cboDataType.SelectedItem.ToString() != "INT")
-                    {
-                        MessageBox.Show("An auto-incremented field must also be of the INT datatype.");
-                        return;
-                    }
-                }
-                otherConstraints = cboOtherConstraints.SelectedItem.ToString();
-            } else
-            {
-                otherConstraints = "";
-            }
-
-            string foreignKey = "";
-            if (chkForeignKey.Checked == true)
-            {
-                if (cboReferenceTable.SelectedItem == null)
-                {
-                    MessageBox.Show("If the field is a foreign key, you have to enter a reference table.");
-                    return;
-                }
-                else if (cboReferenceField.SelectedItem == null)
-                {
-                    MessageBox.Show("If the field is a foreign key, you have to enter a reference field.");
-                    return;
-                }
-                foreignKey = cboReferenceTable.SelectedItem.ToString() + "." + cboReferenceField.SelectedItem.ToString();
-            }
-            /*  The following if-else blocks are used to convert string inputs ("Yes
-             *  and "No") into boolean data types to pass to the Field constructor.
-             */
-            bool isNullable;
-            bool isUnique;
-            bool isPrimaryKey;
-
-            if ((string)cboNullable.SelectedItem == "Yes")
-            {
-                isNullable = true;
-            }
-            else
-            {
-                isNullable = false;
-            }
-            if ((string)cboPrimaryKey.SelectedItem == "Yes")
-            {
-                isPrimaryKey = true;
-            }
-            else
-            {
-                isPrimaryKey = false;
-            }
-            if ((string)cboUnique.SelectedItem == "Yes")
-            {
-                isUnique = true;
-            }
-            else
-            {
-                isUnique = false;
-            }
-
-            // Creating a new Field object
-            Field newField = new Field(txtFieldName.Text
-                                        , (string)cboDataType.SelectedItem
-                                        , isNullable
-                                        , foreignKey
-                                        , isPrimaryKey
-                                        , isUnique
-                                        , otherConstraints
-                                        , txtComments.Text);
-
-            // Adding the field to the selected table's list of fields
-            tables[_selectedTableIndex].AddField(newField);
-
-            // Updating the field list display on the program.
-            updateFieldListDisplay(tables[_selectedTableIndex].Fields);
-
-            // Clearing controls
-            txtFieldName.Clear();
-            cboDataType.SelectedItem = null;
-            cboNullable.SelectedItem = null;
-            cboPrimaryKey.SelectedItem = null;
-            cboUnique.SelectedItem = null;
-            chkForeignKey.Checked = false;
-            cboReferenceField.SelectedItem = null;
-            cboReferenceTable.SelectedItem = null;
-            txtComments.Clear();
-            cboOtherConstraints.SelectedItem = null;
-
-            _unsavedChangesExists = true;
-        }
         private void btnDeleteTable_Click(object sender, EventArgs e)
         {
             /*  This method deletes the selected table from the list of tables.
@@ -408,11 +169,6 @@ namespace PresentationLayer
                 _selectedTableIndex = lstTables.FocusedItem.Index;
                 updateFieldListDisplay(tables[_selectedTableIndex].Fields);
             }
-
-            // clearing foreign key field controls
-            chkForeignKey.Checked = false;
-            cboReferenceField.Items.Clear();
-            cboReferenceTable.Items.Clear();
         }
         private void lstFields_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -424,39 +180,7 @@ namespace PresentationLayer
             if (lstFields.SelectedItems != null && lstFields.SelectedItems.Count > 0)
             {
                 _selectedFieldIndex = lstFields.FocusedItem.Index;
-            }
-        }
-        private void cboReferenceTable_SelectedIndexChanged(object sender, EventArgs e)
-        {  
-            /*  This method updates the cboReferenceField menu based on what the
-             *  user selected in the cboReferenceTable.  The method is called when
-             *  a user selects a new table in the cboReferenceTable
-             *  The selected index is passed to the method that updates
-             *  the cboReferenceField.
-             */
-
-            // The if statement is here to prevent exceptions if the SelectedIndex is null
-            if(cboReferenceTable.SelectedIndex > -1)
-            {
-                updateCboReferenceFieldList(tables[cboReferenceTable.SelectedIndex]);
-            }
-        }
-        private void chkForeignKey_CheckedChanged(object sender, EventArgs e)
-        {
-            /*  This event handler enables and disables the reference table/field
-             *  selectors based on whether the user has checked the checkbox or not
-             */
-
-            if (chkForeignKey.Checked == true)
-            {
-                cboReferenceTable.Enabled = true;
-                cboReferenceField.Enabled = true;
-                updateCboReferenceTableList(tables);
-            }
-            else
-            {
-                cboReferenceTable.Enabled = false;
-                cboReferenceField.Enabled = false;
+                lblFieldComments.Text = tables[_selectedTableIndex].Fields[_selectedFieldIndex].Comments;
             }
         }
         private void mnuExit_Click(object sender, EventArgs e)
@@ -496,6 +220,12 @@ namespace PresentationLayer
             addField.ShowDialog();
             updateFieldListDisplay(tables[_selectedTableIndex].Fields);
         }
+        private void btnAddANewTable_Click(object sender, EventArgs e)
+        {
+            frmAddTable addTable = new frmAddTable(tables, logicClass);
+            addTable.ShowDialog();
+            updateTableListDisplay(tables);
+        }
 
         // Display update methods
 
@@ -505,6 +235,7 @@ namespace PresentationLayer
 
             //  Clearing the current list
             lstTables.Items.Clear();
+            lstFields.Items.Clear();
 
             //  Loop through the list of tables and adds each tablename to the
             //  combo box's list of items.
@@ -559,40 +290,10 @@ namespace PresentationLayer
                     lstFields.Items[i].SubItems.Add("N");
                 }
                 lstFields.Items[i].SubItems.Add(fields[i].OtherConstraints);
-                lstFields.Items[i].SubItems.Add(fields[i].Comments);
             }
 
             // Update the table description label
             lblTableDescription.Text = tables[_selectedTableIndex].TableDescription;
-        }
-        private void updateCboReferenceTableList(List<Table> tables)
-        {
-            /*  This method updates the combobox for choosing a reference table on a
-             *  foreign key.
-             */
-            cboReferenceTable.Items.Clear();
-            for (int i = 0; i < tables.Count; i++)
-            {
-
-                // This if statement is here because you cannot add foreign key references
-                // from tables that are created after the current table.
-                if (_selectedTableIndex > i)
-                {
-                    cboReferenceTable.Items.Add(tables[i].TableName);
-                }
-            }
-        }
-        private void updateCboReferenceFieldList(Table table)
-        {
-            /*  This method updates the combo box for selecting the
-             *  reference key for a foreign key
-             */
-
-            cboReferenceField.Items.Clear();
-            for (int i = 0; i < table.Fields.Count; i++)
-            {
-                cboReferenceField.Items.Add(table.Fields[i].FieldName);
-            }
         }
 
         // File access methods
@@ -684,7 +385,5 @@ namespace PresentationLayer
             // Event handler for the menu strip button "Load TSV File".
             btnSaveData_Click(sender, e);
         }
-
-
     }
 }

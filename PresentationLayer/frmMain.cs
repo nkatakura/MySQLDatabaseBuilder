@@ -93,7 +93,16 @@ namespace PresentationLayer
             // _selectedFieldIndex = -1;
             // _selectedTableIndex = -1;
             logicClass = new LogicClass();
-            tables = logicClass.LoadData();
+
+            try
+            {
+                tables = logicClass.LoadData();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("There was an error loading the save file.");
+            }
+
             updateTableListDisplay(tables);
             _unsavedChangesExists = false;
         }

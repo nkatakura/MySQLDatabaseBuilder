@@ -9,3 +9,14 @@ C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\Logi
 C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\LogicLayer\obj\Debug\LogicLayer.csproj.CopyComplete
 C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\LogicLayer\obj\Debug\LogicLayer.dll
 C:\Users\nkata\Documents\School_Files\Spring_2021\.NET\MySQLDatabaseBuilder\LogicLayer\obj\Debug\LogicLayer.pdb
+C:\Users\nkata\Documents\GitHub\MySQLDatabaseBuilder\LogicLayer\bin\Debug\LogicLayer.dll
+C:\Users\nkata\Documents\GitHub\MySQLDatabaseBuilder\LogicLayer\bin\Debug\LogicLayer.pdb
+C:\Users\nkata\Documents\GitHub\MySQLDatabaseBuilder\LogicLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\nkata\Documents\GitHub\MySQLDatabaseBuilder\LogicLayer\bin\Debug\DataObjects.dll
+C:\Users\nkata\Documents\GitHub\MySQLDatabaseBuilder\LogicLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\nkata\Documents\GitHub\MySQLDatabaseBuilder\LogicLayer\bin\Debug\DataObjects.pdb
+C:\Users\nkata\Documents\GitHub\MySQLDatabaseBuilder\LogicLayer\obj\Debug\LogicLayer.csprojAssemblyReference.cache
+C:\Users\nkata\Documents\GitHub\MySQLDatabaseBuilder\LogicLayer\obj\Debug\LogicLayer.csproj.CoreCompileInputs.cache
+C:\Users\nkata\Documents\GitHub\MySQLDatabaseBuilder\LogicLayer\obj\Debug\LogicLayer.csproj.CopyComplete
+C:\Users\nkata\Documents\GitHub\MySQLDatabaseBuilder\LogicLayer\obj\Debug\LogicLayer.dll
+C:\Users\nkata\Documents\GitHub\MySQLDatabaseBuilder\LogicLayer\obj\Debug\LogicLayer.pdb

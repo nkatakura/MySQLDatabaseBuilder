@@ -39,11 +39,14 @@ namespace PresentationLayer
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHowTo = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnAddANewTable = new System.Windows.Forms.Button();
             this.btnDeleteTable = new System.Windows.Forms.Button();
             this.lstTables = new System.Windows.Forms.ListView();
             this.colTableName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lblFieldComments = new System.Windows.Forms.Label();
             this.btnDeleteField = new System.Windows.Forms.Button();
+            this.btnAddANewField = new System.Windows.Forms.Button();
             this.lblTableDescription = new System.Windows.Forms.Label();
             this.lstFields = new System.Windows.Forms.ListView();
             this.colFieldName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -61,9 +64,6 @@ namespace PresentationLayer
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtDatabaseName = new System.Windows.Forms.TextBox();
-            this.btnAddANewField = new System.Windows.Forms.Button();
-            this.lblFieldComments = new System.Windows.Forms.Label();
-            this.btnAddANewTable = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -147,6 +147,16 @@ namespace PresentationLayer
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tables";
             // 
+            // btnAddANewTable
+            // 
+            this.btnAddANewTable.Location = new System.Drawing.Point(6, 277);
+            this.btnAddANewTable.Name = "btnAddANewTable";
+            this.btnAddANewTable.Size = new System.Drawing.Size(130, 23);
+            this.btnAddANewTable.TabIndex = 20;
+            this.btnAddANewTable.Text = "Add a new Table";
+            this.btnAddANewTable.UseVisualStyleBackColor = true;
+            this.btnAddANewTable.Click += new System.EventHandler(this.btnAddANewTable_Click);
+            // 
             // btnDeleteTable
             // 
             this.btnDeleteTable.Location = new System.Drawing.Point(6, 306);
@@ -192,6 +202,15 @@ namespace PresentationLayer
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Fields";
             // 
+            // lblFieldComments
+            // 
+            this.lblFieldComments.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblFieldComments.Location = new System.Drawing.Point(4, 272);
+            this.lblFieldComments.Name = "lblFieldComments";
+            this.lblFieldComments.Size = new System.Drawing.Size(564, 31);
+            this.lblFieldComments.TabIndex = 19;
+            this.lblFieldComments.Text = "Field Comments:";
+            // 
             // btnDeleteField
             // 
             this.btnDeleteField.Location = new System.Drawing.Point(105, 306);
@@ -201,6 +220,16 @@ namespace PresentationLayer
             this.btnDeleteField.Text = "Delete Field";
             this.btnDeleteField.UseVisualStyleBackColor = true;
             this.btnDeleteField.Click += new System.EventHandler(this.btnDeleteField_Click);
+            // 
+            // btnAddANewField
+            // 
+            this.btnAddANewField.Location = new System.Drawing.Point(5, 306);
+            this.btnAddANewField.Name = "btnAddANewField";
+            this.btnAddANewField.Size = new System.Drawing.Size(94, 23);
+            this.btnAddANewField.TabIndex = 18;
+            this.btnAddANewField.Text = "Add a new Field";
+            this.btnAddANewField.UseVisualStyleBackColor = true;
+            this.btnAddANewField.Click += new System.EventHandler(this.btnAddANewField_Click);
             // 
             // lblTableDescription
             // 
@@ -343,35 +372,6 @@ namespace PresentationLayer
             this.txtDatabaseName.Size = new System.Drawing.Size(130, 20);
             this.txtDatabaseName.TabIndex = 3;
             // 
-            // btnAddANewField
-            // 
-            this.btnAddANewField.Location = new System.Drawing.Point(5, 306);
-            this.btnAddANewField.Name = "btnAddANewField";
-            this.btnAddANewField.Size = new System.Drawing.Size(94, 23);
-            this.btnAddANewField.TabIndex = 18;
-            this.btnAddANewField.Text = "Add a new Field";
-            this.btnAddANewField.UseVisualStyleBackColor = true;
-            this.btnAddANewField.Click += new System.EventHandler(this.btnAddANewField_Click);
-            // 
-            // lblFieldComments
-            // 
-            this.lblFieldComments.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblFieldComments.Location = new System.Drawing.Point(4, 272);
-            this.lblFieldComments.Name = "lblFieldComments";
-            this.lblFieldComments.Size = new System.Drawing.Size(564, 31);
-            this.lblFieldComments.TabIndex = 19;
-            this.lblFieldComments.Text = "Field Comments:";
-            // 
-            // btnAddANewTable
-            // 
-            this.btnAddANewTable.Location = new System.Drawing.Point(6, 277);
-            this.btnAddANewTable.Name = "btnAddANewTable";
-            this.btnAddANewTable.Size = new System.Drawing.Size(130, 23);
-            this.btnAddANewTable.TabIndex = 20;
-            this.btnAddANewTable.Text = "Add a new Table";
-            this.btnAddANewTable.UseVisualStyleBackColor = true;
-            this.btnAddANewTable.Click += new System.EventHandler(this.btnAddANewTable_Click);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -382,6 +382,7 @@ namespace PresentationLayer
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "frmMain";

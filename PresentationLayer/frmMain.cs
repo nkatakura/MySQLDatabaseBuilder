@@ -14,7 +14,7 @@ using LogicLayer;
     PROJECT AUTHOR:     Naoki Katakura
     PROJECT DESCRIPTION:
 		The main purpose of this program is to generate a MySQL script file that builds a database
-        that a user created.  Databases can be designed by manually inputting tables and fields
+        that a user created.  Databases can be designed by manually inputting _tables and fields
         into the GUI, or by loading a data dictionary in the form of a TSV file.
 
         There are two main data objects in use: Tables and Fields.  Like a database, a table
@@ -35,9 +35,9 @@ using LogicLayer;
         user selects an existing table
         user adds a field to the selected table
         user deletes a field
-        user saves the current set of tables and fields to a file
-        user loads a save of tables and fields into the program
-        user builds an SQL file with currently created tables/fields
+        user saves the current set of _tables and fields to a file
+        user loads a save of _tables and fields into the program
+        user builds an SQL file with currently created _tables/fields
 */
 
 /*  KNOWN ISSUES:
@@ -55,16 +55,16 @@ using LogicLayer;
 
 /*  POSSIBLE FEATURES:
 	    Add functionality for adding stored procedures to the SQL file
-		    - automatically add CRUD stored procedures based on tables and fields OR
+		    - automatically add CRUD stored procedures based on _tables and fields OR
 		    - let user decide which stored procedures to add
 
 	    Allow users choose which file to save to
 
 	    Allow users choose which file to load
 
-	    Let users enter data into the tables they just created
+	    Let users enter data into the _tables they just created
 
-        Allow users to edit existing tables and fields
+        Allow users to edit existing _tables and fields
 
         split user stories into separate windows for readability
  */
@@ -76,7 +76,7 @@ namespace PresentationLayer
 {
     public partial class frmMain : Form
     {
-        private List<Table> tables;             // List of tables to be passed around
+        private List<Table> _tables;             // List of _tables to be passed around
         private LogicClass logicClass;          // Logic Class object
         private int _selectedTableIndex;        // int variable that stores the selected table index
         private int _selectedFieldIndex;        // int variable that stores the selected field index
@@ -89,12 +89,12 @@ namespace PresentationLayer
         // Load event handler
         private void frmMain_Load(object sender, EventArgs e)
         {
-            tables = new List<Table>();
+            _tables = new List<Table>();
             // _selectedFieldIndex = -1;
             // _selectedTableIndex = -1;
             logicClass = new LogicClass();
 
-            updateTableListDisplay(tables);
+            updateTableListDisplay(_tables);
             _unsavedChangesExists = false;
         }
 
@@ -102,7 +102,7 @@ namespace PresentationLayer
 
         private void btnDeleteTable_Click(object sender, EventArgs e)
         {
-            /*  This method deletes the selected table from the list of tables.
+            /*  This method deletes the selected table from the list of _tables.
              *  This method is called when the user clicks the "delete table"
              *  button.
              */
@@ -121,8 +121,8 @@ namespace PresentationLayer
             }
 
             // remove and update table
-            tables.RemoveAt(_selectedTableIndex);
-            updateTableListDisplay(tables);
+            _tables.RemoveAt(_selectedTableIndex);
+            updateTableListDisplay(_tables);
 
             // clear the field display
             lstFields.Items.Clear();
@@ -149,10 +149,10 @@ namespace PresentationLayer
             }
 
             // remove selected field from selected table
-            tables[_selectedTableIndex].Fields.RemoveAt(_selectedFieldIndex);
+            _tables[_selectedTableIndex].Fields.RemoveAt(_selectedFieldIndex);
 
             // refresh the display
-            updateFieldListDisplay(tables[_selectedTableIndex].Fields);
+            updateFieldListDisplay(_tables[_selectedTableIndex].Fields);
 
             _unsavedChangesExists = true;
         }
@@ -167,7 +167,7 @@ namespace PresentationLayer
             if (lstTables.SelectedItems != null && lstTables.SelectedItems.Count > 0)
             {
                 _selectedTableIndex = lstTables.FocusedItem.Index;
-                updateFieldListDisplay(tables[_selectedTableIndex].Fields);
+                updateFieldListDisplay(_tables[_selectedTableIndex].Fields);
             }
         }
         private void lstFields_SelectedIndexChanged(object sender, EventArgs e)
@@ -180,7 +180,7 @@ namespace PresentationLayer
             if (lstFields.SelectedItems != null && lstFields.SelectedItems.Count > 0)
             {
                 _selectedFieldIndex = lstFields.FocusedItem.Index;
-                lblFieldComments.Text = tables[_selectedTableIndex].Fields[_selectedFieldIndex].Comments;
+                lblFieldComments.Text = _tables[_selectedTableIndex].Fields[_selectedFieldIndex].Comments;
             }
         }
         private void mnuExit_Click(object sender, EventArgs e)
@@ -216,32 +216,32 @@ namespace PresentationLayer
                 MessageBox.Show("You must select or add a table first");
                 return;
             }
-            frmAddField addField = new frmAddField(tables, _selectedTableIndex, logicClass);
+            frmAddField addField = new frmAddField(_tables, _selectedTableIndex, logicClass);
             addField.ShowDialog();
-            updateFieldListDisplay(tables[_selectedTableIndex].Fields);
+            updateFieldListDisplay(_tables[_selectedTableIndex].Fields);
         }
         private void btnAddANewTable_Click(object sender, EventArgs e)
         {
-            frmAddTable addTable = new frmAddTable(tables, logicClass);
+            frmAddTable addTable = new frmAddTable(_tables, logicClass);
             addTable.ShowDialog();
-            updateTableListDisplay(tables);
+            updateTableListDisplay(_tables);
         }
 
         // Display update methods
 
-        private void updateTableListDisplay(List<Table> tables)
+        private void updateTableListDisplay(List<Table> _tables)
         {
-            //  This method updates the list of tables in the tables combo box.
+            //  This method updates the list of _tables in the _tables combo box.
 
             //  Clearing the current list
             lstTables.Items.Clear();
             lstFields.Items.Clear();
 
-            //  Loop through the list of tables and adds each tablename to the
+            //  Loop through the list of _tables and adds each tablename to the
             //  combo box's list of items.
-            for (int i = 0; i < tables.Count; i++)
+            for (int i = 0; i < _tables.Count; i++)
             {
-                lstTables.Items.Add(tables[i].TableName);
+                lstTables.Items.Add(_tables[i].TableName);
             }
         }
         private void updateFieldListDisplay(List<Field> fields)
@@ -293,7 +293,7 @@ namespace PresentationLayer
             }
 
             // Update the table description label
-            lblTableDescription.Text = tables[_selectedTableIndex].TableDescription;
+            lblTableDescription.Text = _tables[_selectedTableIndex].TableDescription;
         }
 
         // File access methods
@@ -307,8 +307,8 @@ namespace PresentationLayer
 
             try
             {
-                tables = logicClass.LoadData();
-                updateTableListDisplay(tables);
+                _tables = logicClass.LoadData();
+                updateTableListDisplay(_tables);
             }
             catch (Exception ex)
             {
@@ -322,7 +322,7 @@ namespace PresentationLayer
              *  or the "Save TSV File" button from the menu strip.
              */
 
-            if (tables.Count == 0)
+            if (_tables.Count == 0)
             {
                 MessageBox.Show("There is no data to save.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -330,7 +330,7 @@ namespace PresentationLayer
             bool result = false;
             try
             {
-                result = logicClass.SaveData(tables);
+                result = logicClass.SaveData(_tables);
             }
             catch (Exception ex)
             {
@@ -364,7 +364,7 @@ namespace PresentationLayer
             string databaseName = txtDatabaseName.Text;
             try
             {
-                bool result = logicClass.BuildSQL(tables, databaseName);
+                bool result = logicClass.BuildSQL(_tables, databaseName);
                 if (result)
                 {
                     MessageBox.Show("SQL built successfully", "", MessageBoxButtons.OK);

@@ -14,27 +14,27 @@ namespace PresentationLayer
 {
     public partial class frmAddField : Form
     {
-        private List<Table> tables;
-        private Table table;
-        private int index;
-        private LogicClass logicClass;
-        public frmAddField(List<Table> tables, int selectedTableIndex, LogicClass logicClass)
+        private List<Table> _tables;
+        private Table _table;
+        private int _index;
+        private LogicClass _logicClass;
+        public frmAddField(List<Table> _tables, int selectedTableIndex, LogicClass logicClass)
         {
             InitializeComponent();
-            this.table = tables[selectedTableIndex];
-            this.index = selectedTableIndex;
-            this.tables = tables;
-            this.logicClass = logicClass;
+            this._table = _tables[selectedTableIndex];
+            this._index = selectedTableIndex;
+            this._tables = _tables;
+            this._logicClass = logicClass;
         }
 
         private void frmAddField_Load(object sender, EventArgs e)
         {
-            lblTableName.Text = table.TableName;
+            lblTableName.Text = _table.TableName;
         }
 
         private void chkForeignKey_CheckedChanged(object sender, EventArgs e)
         {
-            /*  This event handler enables and disables the reference table/field
+            /*  This event handler enables and disables the reference _table/field
              *  selectors based on whether the user has checked the checkbox or not
             */
 
@@ -42,7 +42,7 @@ namespace PresentationLayer
             {
                 cboReferenceTable.Enabled = true;
                 cboReferenceField.Enabled = true;
-                updateCboReferenceTableList(tables, index);
+                updateCboReferenceTableList(_tables, _index);
             }
             else
             {
@@ -51,35 +51,35 @@ namespace PresentationLayer
             }
         }
 
-        private void updateCboReferenceTableList(List<Table> tables, int index)
+        private void updateCboReferenceTableList(List<Table> _tables, int _index)
         {
-            /*  This method updates the combobox for choosing a reference table on a
+            /*  This method updates the combobox for choosing a reference _table on a
              *  foreign key.
              */
 
             cboReferenceTable.Items.Clear();
-            for (int i = 0; i < tables.Count; i++)
+            for (int i = 0; i < _tables.Count; i++)
             {
 
                 // This if statement is here because you cannot add foreign key references
-                // from tables that are created after the current table.
-                if (index > i)
+                // from _tables that are created after the current _table.
+                if (_index > i)
                 {
-                    cboReferenceTable.Items.Add(tables[i].TableName);
+                    cboReferenceTable.Items.Add(_tables[i].TableName);
                 }
             }
         }
 
-        private void updateCboReferenceFieldList(Table table)
+        private void updateCboReferenceFieldList(Table _table)
         {
             /*  This method updates the combo box for selecting the
              *  reference key for a foreign key
              */
 
             cboReferenceField.Items.Clear();
-            for (int i = 0; i < table.Fields.Count; i++)
+            for (int i = 0; i < _table.Fields.Count; i++)
             {
-                cboReferenceField.Items.Add(table.Fields[i].FieldName);
+                cboReferenceField.Items.Add(_table.Fields[i].FieldName);
             }
         }
 
@@ -87,21 +87,21 @@ namespace PresentationLayer
         {
             /*  This method updates the cboReferenceField menu based on what the
              *  user selected in the cboReferenceTable.  The method is called when
-             *  a user selects a new table in the cboReferenceTable
-             *  The selected index is passed to the method that updates
+             *  a user selects a new _table in the cboReferenceTable
+             *  The selected _index is passed to the method that updates
              *  the cboReferenceField.
              */
 
             // The if statement is here to prevent exceptions if the SelectedIndex is null
             if (cboReferenceTable.SelectedIndex > -1)
             {
-                updateCboReferenceFieldList(tables[cboReferenceTable.SelectedIndex]);
+                updateCboReferenceFieldList(_tables[cboReferenceTable.SelectedIndex]);
             }
         }
 
         private void btnAddField_Click(object sender, EventArgs e)
         {
-            /*  This method adds a field to the currently selected table's
+            /*  This method adds a field to the currently selected _table's
              *  list of fields.  The field properties are determined by
              *  what the user has input.  This method is called when the
              *  user clicks the "Add Field" button.
@@ -126,9 +126,9 @@ namespace PresentationLayer
                 return;
             }
 
-            if (logicClass.fieldAlreadyExists(tables[index], txtFieldName.Text))
+            if (_logicClass.fieldAlreadyExists(_tables[_index], txtFieldName.Text))
             {
-                MessageBox.Show("The field name you entered is already in use in the table");
+                MessageBox.Show("The field name you entered is already in use in the _table");
                 txtFieldName.Focus();
                 return;
             }
@@ -197,7 +197,7 @@ namespace PresentationLayer
             {
                 if (cboReferenceTable.SelectedItem == null)
                 {
-                    MessageBox.Show("If the field is a foreign key, you have to enter a reference table.");
+                    MessageBox.Show("If the field is a foreign key, you have to enter a reference _table.");
                     return;
                 }
                 else if (cboReferenceField.SelectedItem == null)
@@ -249,8 +249,8 @@ namespace PresentationLayer
                                         , otherConstraints
                                         , txtComments.Text);
 
-            // Adding the field to the selected table's list of fields
-            table.AddField(newField);
+            // Adding the field to the selected _table's list of fields
+            _table.AddField(newField);
 
             // closing the window
             this.Close();

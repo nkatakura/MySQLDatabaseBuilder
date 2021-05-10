@@ -31,9 +31,25 @@ using LogicLayer;
 
 /*  USER STORIES:
         user adds a new table
+            Validation:
+                Table name cannot be blank
+                Table name cannot contain spaces
+                Table comments cannot be blank
+                Table name cannot already exist
+
         user deletes a table
         user selects an existing table
         user adds a field to the selected table
+            validation:
+                a table has to be selected
+                field name cannot be blank
+                field name cannot contain spaces
+                field name cannot already exist
+                data type has to be selected
+                nullable has to be selected
+                primary key has to be selected
+                unique has to be selected
+                comments cannot be blank
         user deletes a field
         user saves the current set of tables and fields to a file
         user loads a save of tables and fields into the program

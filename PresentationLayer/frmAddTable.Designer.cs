@@ -59,7 +59,7 @@
             this.txtTableName.Location = new System.Drawing.Point(12, 25);
             this.txtTableName.Name = "txtTableName";
             this.txtTableName.Size = new System.Drawing.Size(169, 20);
-            this.txtTableName.TabIndex = 3;
+            this.txtTableName.TabIndex = 1;
             // 
             // txtTableDescription
             // 
@@ -67,14 +67,14 @@
             this.txtTableDescription.Multiline = true;
             this.txtTableDescription.Name = "txtTableDescription";
             this.txtTableDescription.Size = new System.Drawing.Size(319, 100);
-            this.txtTableDescription.TabIndex = 4;
+            this.txtTableDescription.TabIndex = 2;
             // 
             // btnAddTable
             // 
             this.btnAddTable.Location = new System.Drawing.Point(103, 170);
             this.btnAddTable.Name = "btnAddTable";
             this.btnAddTable.Size = new System.Drawing.Size(75, 23);
-            this.btnAddTable.TabIndex = 5;
+            this.btnAddTable.TabIndex = 3;
             this.btnAddTable.Text = "Add Table";
             this.btnAddTable.UseVisualStyleBackColor = true;
             this.btnAddTable.Click += new System.EventHandler(this.btnAddTable_Click);
@@ -101,6 +101,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "frmAddTable";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add a Table";
             this.ResumeLayout(false);
             this.PerformLayout();

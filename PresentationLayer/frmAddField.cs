@@ -34,7 +34,7 @@ namespace PresentationLayer
 
         private void chkForeignKey_CheckedChanged(object sender, EventArgs e)
         {
-            /*  This event handler enables and disables the reference _table/field
+            /*  This event handler enables and disables the reference table/field
              *  selectors based on whether the user has checked the checkbox or not
             */
 
@@ -53,7 +53,7 @@ namespace PresentationLayer
 
         private void updateCboReferenceTableList(List<Table> _tables, int _index)
         {
-            /*  This method updates the combobox for choosing a reference _table on a
+            /*  This method updates the combobox for choosing a reference table on a
              *  foreign key.
              */
 
@@ -62,7 +62,7 @@ namespace PresentationLayer
             {
 
                 // This if statement is here because you cannot add foreign key references
-                // from _tables that are created after the current _table.
+                // from _tables that are created after the current table.
                 if (_index > i)
                 {
                     cboReferenceTable.Items.Add(_tables[i].TableName);
@@ -87,7 +87,7 @@ namespace PresentationLayer
         {
             /*  This method updates the cboReferenceField menu based on what the
              *  user selected in the cboReferenceTable.  The method is called when
-             *  a user selects a new _table in the cboReferenceTable
+             *  a user selects a new table in the cboReferenceTable
              *  The selected _index is passed to the method that updates
              *  the cboReferenceField.
              */
@@ -101,7 +101,7 @@ namespace PresentationLayer
 
         private void btnAddField_Click(object sender, EventArgs e)
         {
-            /*  This method adds a field to the currently selected _table's
+            /*  This method adds a field to the currently selected table's
              *  list of fields.  The field properties are determined by
              *  what the user has input.  This method is called when the
              *  user clicks the "Add Field" button.
@@ -119,7 +119,7 @@ namespace PresentationLayer
             }
 
             // if the field name contains a space
-            if (!txtFieldName.ToString().Contains(' '))
+            if (txtFieldName.Text.Contains(' '))
             {
                 MessageBox.Show("A field name cannot contain spaces.");
                 txtFieldName.Focus();
@@ -128,7 +128,7 @@ namespace PresentationLayer
 
             if (_logicClass.fieldAlreadyExists(_tables[_index], txtFieldName.Text))
             {
-                MessageBox.Show("The field name you entered is already in use in the _table");
+                MessageBox.Show("The field name you entered is already in use in the table");
                 txtFieldName.Focus();
                 return;
             }
@@ -197,7 +197,7 @@ namespace PresentationLayer
             {
                 if (cboReferenceTable.SelectedItem == null)
                 {
-                    MessageBox.Show("If the field is a foreign key, you have to enter a reference _table.");
+                    MessageBox.Show("If the field is a foreign key, you have to enter a reference table.");
                     return;
                 }
                 else if (cboReferenceField.SelectedItem == null)
@@ -214,7 +214,7 @@ namespace PresentationLayer
             bool isUnique;
             bool isPrimaryKey;
 
-            if ((string)cboNullable.SelectedItem == "Yes")
+            if ((string)cboNullable.SelectedItem == "Y")
             {
                 isNullable = true;
             }
@@ -222,7 +222,7 @@ namespace PresentationLayer
             {
                 isNullable = false;
             }
-            if ((string)cboPrimaryKey.SelectedItem == "Yes")
+            if ((string)cboPrimaryKey.SelectedItem == "Y")
             {
                 isPrimaryKey = true;
             }
@@ -230,7 +230,7 @@ namespace PresentationLayer
             {
                 isPrimaryKey = false;
             }
-            if ((string)cboUnique.SelectedItem == "Yes")
+            if ((string)cboUnique.SelectedItem == "Y")
             {
                 isUnique = true;
             }
@@ -249,7 +249,7 @@ namespace PresentationLayer
                                         , otherConstraints
                                         , txtComments.Text);
 
-            // Adding the field to the selected _table's list of fields
+            // Adding the field to the selected table's list of fields
             _table.AddField(newField);
 
             // closing the window

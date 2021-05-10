@@ -14,7 +14,7 @@ using LogicLayer;
     PROJECT AUTHOR:     Naoki Katakura
     PROJECT DESCRIPTION:
 		The main purpose of this program is to generate a MySQL script file that builds a database
-        that a user created.  Databases can be designed by manually inputting _tables and fields
+        that a user created.  Databases can be designed by manually inputting tables and fields
         into the GUI, or by loading a data dictionary in the form of a TSV file.
 
         There are two main data objects in use: Tables and Fields.  Like a database, a table
@@ -35,9 +35,9 @@ using LogicLayer;
         user selects an existing table
         user adds a field to the selected table
         user deletes a field
-        user saves the current set of _tables and fields to a file
-        user loads a save of _tables and fields into the program
-        user builds an SQL file with currently created _tables/fields
+        user saves the current set of tables and fields to a file
+        user loads a save of tables and fields into the program
+        user builds an SQL file with currently created tables/fields
 */
 
 /*  KNOWN ISSUES:
@@ -55,16 +55,16 @@ using LogicLayer;
 
 /*  POSSIBLE FEATURES:
 	    Add functionality for adding stored procedures to the SQL file
-		    - automatically add CRUD stored procedures based on _tables and fields OR
+		    - automatically add CRUD stored procedures based on tables and fields OR
 		    - let user decide which stored procedures to add
 
 	    Allow users choose which file to save to
 
 	    Allow users choose which file to load
 
-	    Let users enter data into the _tables they just created
+	    Let users enter data into the tables they just created
 
-        Allow users to edit existing _tables and fields
+        Allow users to edit existing tables and fields
 
         split user stories into separate windows for readability
  */
@@ -76,7 +76,7 @@ namespace PresentationLayer
 {
     public partial class frmMain : Form
     {
-        private List<Table> _tables;             // List of _tables to be passed around
+        private List<Table> _tables;             // List of tables to be passed around
         private LogicClass logicClass;          // Logic Class object
         private int _selectedTableIndex;        // int variable that stores the selected table index
         private int _selectedFieldIndex;        // int variable that stores the selected field index
@@ -102,7 +102,7 @@ namespace PresentationLayer
 
         private void btnDeleteTable_Click(object sender, EventArgs e)
         {
-            /*  This method deletes the selected table from the list of _tables.
+            /*  This method deletes the selected table from the list of tables.
              *  This method is called when the user clicks the "delete table"
              *  button.
              */
@@ -211,7 +211,7 @@ namespace PresentationLayer
         }
         private void btnAddANewField_Click(object sender, EventArgs e)
         {
-            if (lstTables.FocusedItem == null)
+            if (lstTables.SelectedItems.Count == 0)
             {
                 MessageBox.Show("You must select or add a table first");
                 return;
@@ -231,13 +231,13 @@ namespace PresentationLayer
 
         private void updateTableListDisplay(List<Table> _tables)
         {
-            //  This method updates the list of _tables in the _tables combo box.
+            //  This method updates the list of tables in the tables combo box.
 
             //  Clearing the current list
             lstTables.Items.Clear();
             lstFields.Items.Clear();
 
-            //  Loop through the list of _tables and adds each tablename to the
+            //  Loop through the list of tables and adds each tablename to the
             //  combo box's list of items.
             for (int i = 0; i < _tables.Count; i++)
             {
@@ -252,6 +252,7 @@ namespace PresentationLayer
 
             // Clearing the current display
             lstFields.Items.Clear();
+            lblFieldComments.Text = "";
 
             // Loop for each item in the field list
             for (int i = 0; i < fields.Count; i++)

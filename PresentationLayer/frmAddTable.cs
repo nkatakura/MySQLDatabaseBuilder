@@ -40,7 +40,7 @@ namespace PresentationLayer
             }
 
             // The following if statement checks if the user entered a table name containing a space
-            if (!txtTableName.ToString().Trim().Contains(' '))
+            if (txtTableName.Text.Contains(' '))
             {
                 MessageBox.Show("Table names cannot contain spaces");
                 txtTableName.Focus();

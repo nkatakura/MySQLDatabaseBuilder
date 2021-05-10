@@ -125,7 +125,7 @@
             this.chkForeignKey.Location = new System.Drawing.Point(189, 139);
             this.chkForeignKey.Name = "chkForeignKey";
             this.chkForeignKey.Size = new System.Drawing.Size(88, 17);
-            this.chkForeignKey.TabIndex = 7;
+            this.chkForeignKey.TabIndex = 8;
             this.chkForeignKey.Text = "Foreign Key?";
             this.chkForeignKey.UseVisualStyleBackColor = true;
             this.chkForeignKey.CheckedChanged += new System.EventHandler(this.chkForeignKey_CheckedChanged);
@@ -153,7 +153,7 @@
             this.txtFieldName.Location = new System.Drawing.Point(9, 33);
             this.txtFieldName.Name = "txtFieldName";
             this.txtFieldName.Size = new System.Drawing.Size(158, 20);
-            this.txtFieldName.TabIndex = 10;
+            this.txtFieldName.TabIndex = 1;
             // 
             // txtComments
             // 
@@ -161,7 +161,7 @@
             this.txtComments.Multiline = true;
             this.txtComments.Name = "txtComments";
             this.txtComments.Size = new System.Drawing.Size(186, 100);
-            this.txtComments.TabIndex = 11;
+            this.txtComments.TabIndex = 7;
             // 
             // cboDataType
             // 
@@ -177,7 +177,7 @@
             this.cboDataType.Location = new System.Drawing.Point(9, 72);
             this.cboDataType.Name = "cboDataType";
             this.cboDataType.Size = new System.Drawing.Size(121, 21);
-            this.cboDataType.TabIndex = 12;
+            this.cboDataType.TabIndex = 2;
             // 
             // cboNullable
             // 
@@ -189,7 +189,7 @@
             this.cboNullable.Location = new System.Drawing.Point(9, 112);
             this.cboNullable.Name = "cboNullable";
             this.cboNullable.Size = new System.Drawing.Size(58, 21);
-            this.cboNullable.TabIndex = 13;
+            this.cboNullable.TabIndex = 3;
             // 
             // cboPrimaryKey
             // 
@@ -201,7 +201,7 @@
             this.cboPrimaryKey.Location = new System.Drawing.Point(9, 152);
             this.cboPrimaryKey.Name = "cboPrimaryKey";
             this.cboPrimaryKey.Size = new System.Drawing.Size(58, 21);
-            this.cboPrimaryKey.TabIndex = 14;
+            this.cboPrimaryKey.TabIndex = 4;
             // 
             // cboUnique
             // 
@@ -213,7 +213,7 @@
             this.cboUnique.Location = new System.Drawing.Point(9, 192);
             this.cboUnique.Name = "cboUnique";
             this.cboUnique.Size = new System.Drawing.Size(58, 21);
-            this.cboUnique.TabIndex = 15;
+            this.cboUnique.TabIndex = 5;
             // 
             // cboOtherConstraints
             // 
@@ -223,16 +223,17 @@
             this.cboOtherConstraints.Location = new System.Drawing.Point(9, 232);
             this.cboOtherConstraints.Name = "cboOtherConstraints";
             this.cboOtherConstraints.Size = new System.Drawing.Size(158, 21);
-            this.cboOtherConstraints.TabIndex = 16;
+            this.cboOtherConstraints.TabIndex = 6;
             // 
             // cboReferenceTable
             // 
             this.cboReferenceTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboReferenceTable.FormattingEnabled = true;
+            this.cboReferenceTable.ItemHeight = 13;
             this.cboReferenceTable.Location = new System.Drawing.Point(189, 176);
             this.cboReferenceTable.Name = "cboReferenceTable";
             this.cboReferenceTable.Size = new System.Drawing.Size(121, 21);
-            this.cboReferenceTable.TabIndex = 17;
+            this.cboReferenceTable.TabIndex = 9;
             this.cboReferenceTable.SelectedIndexChanged += new System.EventHandler(this.cboReferenceTable_SelectedIndexChanged);
             // 
             // cboReferenceField
@@ -242,7 +243,7 @@
             this.cboReferenceField.Location = new System.Drawing.Point(189, 216);
             this.cboReferenceField.Name = "cboReferenceField";
             this.cboReferenceField.Size = new System.Drawing.Size(121, 21);
-            this.cboReferenceField.TabIndex = 18;
+            this.cboReferenceField.TabIndex = 10;
             // 
             // label10
             // 
@@ -297,7 +298,7 @@
             this.btnAddField.Location = new System.Drawing.Point(92, 276);
             this.btnAddField.Name = "btnAddField";
             this.btnAddField.Size = new System.Drawing.Size(75, 23);
-            this.btnAddField.TabIndex = 19;
+            this.btnAddField.TabIndex = 11;
             this.btnAddField.Text = "Add Field";
             this.btnAddField.UseVisualStyleBackColor = true;
             this.btnAddField.Click += new System.EventHandler(this.btnAddField_Click);

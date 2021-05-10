@@ -7,7 +7,7 @@ Naoki Katakura
 PROJECT DESCRIPTION:
 
 	The main purpose of this program is to generate a MySQL script file that builds a database
-        that a user created.  Databases can be designed by manually inputting tables and fields
+    that a user created.  Databases can be designed by manually inputting tables and fields
         into the GUI, or by loading a data dictionary in the form of a TSV file.
 
         There are two main data objects in use: Tables and Fields.  Like a database, a table
